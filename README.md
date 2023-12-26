@@ -8,7 +8,7 @@
 erasxc159/erasxc159 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
-![](https://img.shields.io/badge/CSDN-管田将军不管饱-blue.svg)] 
+![CSDN](https://img.shields.io/badge/CSDN-管田将军不管饱-blue.svg)] 
 ![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Git](https://img.shields.io/badge/-Git-f05032?style=flat-square&logo=Git&logoColor=white)
 
