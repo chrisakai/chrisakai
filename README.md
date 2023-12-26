@@ -5,17 +5,19 @@
 <br />
 
 - 🔭你好呀！💡
-
 - 🤔这里是Chris，想做一个有意思的全栈工程师
-
 - ⚡ Fun fact:喜欢看动漫，喜欢听音乐，喜欢看电影，热爱运动健身
-
+---
 - 👋 Hi, I’m Chris Chan
 - 👀 I’m interested in badminton,basketball...
 - 🌱 I’m currently learning python,java...
 - 💞️ I’m looking to collaborate online
 - 📫 How to reach me :erasxc159@163.com
-
+---
+- 👋 こんにちは、タカラです
+- 👀 バドミントンとバスケットボールは趣味です
+- 🌱 javaとpythonの開発者です
+  
 <!---
 chrisakai/chrisakai is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
