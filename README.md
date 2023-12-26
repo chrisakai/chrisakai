@@ -14,9 +14,9 @@
 - 💞️ I’m looking to collaborate online
 - 📫 How to reach me :erasxc159@163.com
 ---
-- 👋 こんにちは、タカラです
+- 👋 こんにちは、タカラと申します
 - 👀 バドミントンとバスケットボールは趣味です
-- 🌱 javaとpythonの開発者です
+- 🌱 今、javaとpythonの開発を担当しています
   
 <!---
 chrisakai/chrisakai is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
