@@ -22,7 +22,7 @@
 chrisakai/chrisakai is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
-![CSDN](https://img.shields.io/badge/CSDN-管田将军不管饱-blue.svg)
+![CSDN](https://img.shields.io/badge/CSDN-极客阿琛-blue.svg)
 ![](https://img.shields.io/badge/ubuntu-20.04-<COLOR>.svg)
 ![Git](https://img.shields.io/badge/-Git-f05032?style=flat-square&logo=Git&logoColor=white)
 
