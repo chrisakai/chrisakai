@@ -1,14 +1,14 @@
-<h2 align="center">👋 Hey! I'm Chris Chan ✨</h2>
+<h2 align="center">👋 Hey! I'm Cedric Chan ✨</h2>
 <br />
 ❤️ 🍦 🍓 🍉 🍋 🥛 ☕ 🍗 🍟 🎮 💻 🎶 💰
 <br />
 <br />
 
 - 🔭你好呀！💡
-- 🤔这里是Chris，想做一个有意思的全栈工程师
+- 🤔这里是Cedric，想做一个有意思的全栈工程师
 - ⚡ Fun fact:喜欢看动漫，喜欢听音乐，喜欢看电影，热爱运动健身
 ---
-- 👋 Hi, I’m Chris Chan
+- 👋 Hi, I’m Cedric
 - 👀 I’m interested in badminton,basketball...
 - 🌱 I’m currently learning python,java...
 - 💞️ I’m looking to collaborate online
