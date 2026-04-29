@@ -1,4 +1,4 @@
-<h2 align="center">👋 Hey! I'm Cedric Chan ✨</h2>
+<h2 align="center">👋 Hey! I'm Cedric CHEN ✨</h2>
 <br />
 ❤️ 🍦 🍓 🍉 🍋 🥛 ☕ 🍗 🍟 🎮 💻 🎶 💰
 <br />
