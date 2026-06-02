@@ -38,6 +38,6 @@ You can click the Preview link to take a look at your changes.
 
 <img height="130px" src="https://github-readme-stats.vercel.app/api?username=chrisakai&hide_title=true&show_icons=true&hide=issues&include_all_commits=true&count_private=true&theme=graywhite&hide_border=true&bg_color=45,ff7979,ffd479,fffc79,73fa79" alt="chrisakai's GitHub Stats"> <img height="130px" src="https://github-readme-stats.vercel.app/api/top-langs?username=chrisakai&hide_title=true&layout=compact&theme=graywhite&hide_border=true&bg_color=45,fffc79,73fa79,75f0db" alt="Most Used Languages">
 
-[![TOGAF Enterprise Architecture Practitioner](https://images.credly.com/images/e36934b0-9b77-4bef-bf0c-a479c6c4f660/image.png)](https://www.credly.com/badges/b1002bd7-e2b4-4c69-8c52-680358774f3e/public_url)
+[![TOGAF Enterprise Architecture Practitioner](https://images.credly.com/size/110x110/images/e36934b0-9b77-4bef-bf0c-a479c6c4f660/image.png)](https://www.credly.com/badges/b1002bd7-e2b4-4c69-8c52-680358774f3e/public_url)
 
 [![An image of @erasxc159's Holopin badges, which is a link to view their full Holopin profile](https://holopin.me/erasxc159)](https://holopin.io/@erasxc159)
