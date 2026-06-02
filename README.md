@@ -36,15 +36,10 @@ TOGAF Enterprise Architecture Practitioner
 ### Interests
 
 🏸 Badminton
-
 🏋️ Fitness
-
 ♟ Chess
-
 🎮 Gaming
-
 🎵 Music
-
 🎬 Movies & Anime
 
 ### Contact
@@ -54,6 +49,7 @@ TOGAF Enterprise Architecture Practitioner
 💻 GitHub: github.com/chrisakai
 
 🏆 Credly
+
 [![TOGAF Enterprise Architecture Practitioner](https://images.credly.com/size/110x110/images/e36934b0-9b77-4bef-bf0c-a479c6c4f660/image.png)](https://www.credly.com/badges/b1002bd7-e2b4-4c69-8c52-680358774f3e/public_url)
 
 🎖 Holopin
