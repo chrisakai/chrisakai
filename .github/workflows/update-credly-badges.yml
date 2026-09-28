@@ -89,7 +89,7 @@ jobs:
                   badge_template = entry.get("badge_template")
                   badge_template = badge_template if isinstance(badge_template, dict) else {}
                   name = badge_template.get("name")
-                  image_url = badge_template.get("image_url") or entry.get("image_url")
+                  image_url = badge_template.get("image_url")
 
                   if not all(isinstance(value, str) and value for value in (badge_id, name, image_url)):
                       continue
