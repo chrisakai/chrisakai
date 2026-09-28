@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: kpab/credly-readme@v1
         with:
-          credly_user: erasxc159@163.com  # 你的 Credly 用户名
+          credly_user: chen-chen.ef8cef82  # 你的 Credly 用户名
           sort: LATEST
           badge_width: 100
