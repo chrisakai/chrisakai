@@ -131,7 +131,7 @@ jobs:
               "end": f"<!--END_SECTION:{section_name}-->",
           }
           pattern = re.compile(
-              rf'({re.escape(markers["start"])}\s*)([\s\S]*?)(\s*{re.escape(markers["end"])})',
+              rf'({re.escape(markers["start"])})(\s*)([\s\S]*?)(\s*)({re.escape(markers["end"])})',
               re.MULTILINE,
           )
 
@@ -144,7 +144,11 @@ jobs:
               sys.exit(0)
 
           replacement = render_badges(normalize_badges(fetch_payload()))
-          updated = pattern.sub(lambda match: f"{match.group(1)}{replacement}{match.group(3)}", content, count=1)
+          updated = pattern.sub(
+              lambda match: f"{match.group(1)}{match.group(2)}{replacement}{match.group(4)}{match.group(5)}",
+              content,
+              count=1,
+          )
 
           if updated != content:
               readme_path.write_text(updated, encoding="utf-8")
