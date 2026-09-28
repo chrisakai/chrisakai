@@ -5,13 +5,139 @@ on:
   workflow_dispatch:     # 手动触发
 permissions:
   contents: write
+env:
+  CREDLY_USERNAME: ${{ vars.CREDLY_USERNAME || github.repository_owner }}
+  README_PATH: README.md
+  SECTION_NAME: badges
+  BADGE_WIDTH: "100"
+  EMPTY_MESSAGE: No badges found.
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: kpab/credly-readme@v1
-        with:
-          credly_user: erasxc159@163.com  # 你的 Credly 用户名
-          sort: LATEST
-          badge_width: 100
+      - name: Update badges in README
+        run: |
+          python3 <<'PY'
+          import html
+          import json
+          import os
+          import re
+          import time
+          from pathlib import Path
+          from urllib.error import HTTPError, URLError
+          from urllib.parse import quote
+          from urllib.request import Request, urlopen
+
+          username = os.environ["CREDLY_USERNAME"].strip()
+          readme_path = Path(os.environ["README_PATH"])
+          section_name = os.environ["SECTION_NAME"]
+          badge_width = int(os.environ["BADGE_WIDTH"])
+          empty_message = os.environ["EMPTY_MESSAGE"]
+
+          def fetch_payload() -> dict:
+              request = Request(
+                  f"https://www.credly.com/users/{quote(username)}/badges.json",
+                  headers={"accept": "application/json"},
+              )
+
+              last_error = None
+              for attempt in range(3):
+                  try:
+                      with urlopen(request, timeout=10) as response:
+                          return json.load(response)
+                  except HTTPError as error:
+                      if error.code == 404:
+                          print(
+                              f"::warning::No public Credly profile found for '{username}'. "
+                              "Updating the badges section with the empty message."
+                          )
+                          return {"data": []}
+                      last_error = error
+                  except URLError as error:
+                      last_error = error
+
+                  if attempt < 2:
+                      time.sleep(0.5 * 2 ** attempt)
+
+              raise RuntimeError(f"Failed to fetch Credly badges for '{username}': {last_error}")
+
+          def normalize_badges(payload: dict) -> list[dict[str, str]]:
+              data = payload.get("data")
+              if not isinstance(data, list):
+                  raise RuntimeError("Credly response did not include a valid data array.")
+
+              badges = []
+              for entry in data:
+                  if not isinstance(entry, dict):
+                      continue
+
+                  badge_id = entry.get("id")
+                  issued_at = entry.get("issued_at_date") or ""
+                  badge_template = entry.get("badge_template")
+                  badge_template = badge_template if isinstance(badge_template, dict) else {}
+                  name = badge_template.get("name")
+                  image_url = badge_template.get("image_url") or entry.get("image_url")
+
+                  if not all(isinstance(value, str) and value for value in (badge_id, name, image_url)):
+                      continue
+
+                  badges.append(
+                      {
+                          "id": badge_id,
+                          "issued_at_date": issued_at if isinstance(issued_at, str) else "",
+                          "image_url": image_url,
+                          "name": name,
+                      }
+                  )
+
+              return sorted(
+                  badges,
+                  key=lambda badge: badge["issued_at_date"] or "1970-01-01",
+                  reverse=True,
+              )
+
+          def render_badges(badges: list[dict[str, str]]) -> str:
+              if not badges:
+                  return empty_message
+
+              return " ".join(
+                  (
+                      f'<a href="https://www.credly.com/badges/{badge["id"]}" '
+                      f'title="{html.escape(badge["name"], quote=True)}">'
+                      f'<img src="{badge["image_url"]}" width="{badge_width}" '
+                      f'alt="{html.escape(badge["name"], quote=True)}" /></a>'
+                  )
+                  for badge in badges
+              )
+
+          markers = {
+              "start": f"<!--START_SECTION:{section_name}-->",
+              "end": f"<!--END_SECTION:{section_name}-->",
+          }
+          pattern = re.compile(
+              rf'({re.escape(markers["start"])}\s*)([\s\S]*?)(\s*{re.escape(markers["end"])})',
+              re.MULTILINE,
+          )
+
+          content = readme_path.read_text(encoding="utf-8")
+          if not pattern.search(content):
+              raise RuntimeError(f'Markers for section "{section_name}" were not found in {readme_path}.')
+
+          replacement = render_badges(normalize_badges(fetch_payload()))
+          updated = pattern.sub(lambda match: f"{match.group(1)}{replacement}{match.group(3)}", content, count=1)
+
+          if updated != content:
+              readme_path.write_text(updated, encoding="utf-8")
+          PY
+      - name: Commit and push README changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$README_PATH"
+          if git diff --cached --quiet; then
+            echo "No README changes to commit."
+            exit 0
+          fi
+          git commit -m "chore: update credly badges"
+          git push
