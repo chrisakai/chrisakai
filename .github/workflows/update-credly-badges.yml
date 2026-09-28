@@ -26,7 +26,7 @@ jobs:
           import time
           from pathlib import Path
           from urllib.error import HTTPError, URLError
-          from urllib.parse import quote
+          from urllib.parse import quote, urlparse
           from urllib.request import Request, urlopen
 
           username = os.environ["CREDLY_USERNAME"].strip()
@@ -67,6 +67,10 @@ jobs:
               if not isinstance(data, list):
                   raise RuntimeError("Credly response did not include a valid data array.")
 
+              def is_safe_image_url(value: str) -> bool:
+                  parsed = urlparse(value)
+                  return parsed.scheme == "https" and bool(parsed.netloc)
+
               badges = []
               for entry in data:
                   if not isinstance(entry, dict):
@@ -80,6 +84,8 @@ jobs:
                   image_url = badge_template.get("image_url") or entry.get("image_url")
 
                   if not all(isinstance(value, str) and value for value in (badge_id, name, image_url)):
+                      continue
+                  if not is_safe_image_url(image_url):
                       continue
 
                   badges.append(
@@ -103,9 +109,9 @@ jobs:
 
               return " ".join(
                   (
-                      f'<a href="https://www.credly.com/badges/{badge["id"]}" '
+                      f'<a href="https://www.credly.com/badges/{quote(badge["id"], safe="")}" '
                       f'title="{html.escape(badge["name"], quote=True)}">'
-                      f'<img src="{badge["image_url"]}" width="{badge_width}" '
+                      f'<img src="{html.escape(badge["image_url"], quote=True)}" width="{badge_width}" '
                       f'alt="{html.escape(badge["name"], quote=True)}" /></a>'
                   )
                   for badge in badges
