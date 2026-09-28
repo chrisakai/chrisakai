@@ -112,11 +112,11 @@ jobs:
                   reverse=True,
               )
 
-          def render_badges(badges: list[dict[str, str]]) -> str:
+          def render_badges(badges: list[dict[str, str]], separator: str) -> str:
               if not badges:
                   return empty_message
 
-              return " ".join(
+              return separator.join(
                   (
                       f'<a href="https://www.credly.com/badges/{quote(badge["id"], safe="")}" '
                       f'title="{html.escape(badge["name"], quote=True)}">'
@@ -136,7 +136,8 @@ jobs:
           )
 
           content = readme_path.read_text(encoding="utf-8")
-          if not pattern.search(content):
+          match = pattern.search(content)
+          if not match:
               print(
                   f'::warning::Markers for section "{section_name}" were not found in {readme_path}. '
                   "Skipping badge update."
@@ -145,7 +146,14 @@ jobs:
 
           payload = fetch_payload()
           badges = normalize_badges(payload)
-          replacement = render_badges(badges)
+          current_body = match.group(3)
+          separator = " "
+          if "\n" in current_body:
+              indent_match = re.search(r"(?:^|\n)([ \t]*)\S", current_body)
+              indent = indent_match.group(1) if indent_match else ""
+              separator = f"\n{indent}"
+
+          replacement = render_badges(badges, separator)
           updated = pattern.sub(
               lambda match: f"{match.group(1)}{match.group(2)}{replacement}{match.group(4)}{match.group(5)}",
               content,
