@@ -23,6 +23,7 @@ jobs:
           import json
           import os
           import re
+          import sys
           import time
           from pathlib import Path
           from urllib.error import HTTPError, URLError
@@ -136,7 +137,11 @@ jobs:
 
           content = readme_path.read_text(encoding="utf-8")
           if not pattern.search(content):
-              raise RuntimeError(f'Markers for section "{section_name}" were not found in {readme_path}.')
+              print(
+                  f'::warning::Markers for section "{section_name}" were not found in {readme_path}. '
+                  "Skipping badge update."
+              )
+              sys.exit(0)
 
           replacement = render_badges(normalize_badges(fetch_payload()))
           updated = pattern.sub(lambda match: f"{match.group(1)}{replacement}{match.group(3)}", content, count=1)
