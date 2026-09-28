@@ -29,9 +29,9 @@ Enterprise Architect and Full-Stack Engineer passionate about cloud computing, e
 
 Azure • Python • Java • SAP • Databricks • Vue.js • Redis • MySQL
 
-### Certifications
-
-TOGAF Enterprise Architecture Practitioner
+## Certifications
+<!--START_SECTION:badges-->
+<!--END_SECTION:badges-->
 
 ### Interests
 
@@ -48,12 +48,6 @@ TOGAF Enterprise Architecture Practitioner
 
 💻 GitHub: github.com/chrisakai
 
-🏆 Credly
-
-[![TOGAF Enterprise Architecture Practitioner](https://images.credly.com/size/110x110/images/e36934b0-9b77-4bef-bf0c-a479c6c4f660/image.png)](https://www.credly.com/badges/b1002bd7-e2b4-4c69-8c52-680358774f3e/public_url)
-
-🎖 Holopin
-[![An image of @erasxc159's Holopin badges, which is a link to view their full Holopin profile](https://holopin.me/erasxc159)](https://holopin.io/@erasxc159)
 <!---
 chrisakai/chrisakai is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
