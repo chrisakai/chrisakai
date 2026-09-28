@@ -36,8 +36,7 @@ Azure • Python • Java • SAP • Databricks • Vue.js • Redis • MySQL
 ### Interests
 
 🏸 Badminton
-🏋️ Fitness
-♟ Chess
+♟ Chess(1400 ELO)
 🎮 Gaming
 🎵 Music
 🎬 Movies & Anime
