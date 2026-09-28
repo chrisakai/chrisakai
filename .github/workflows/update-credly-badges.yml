@@ -143,7 +143,9 @@ jobs:
               )
               sys.exit(0)
 
-          replacement = render_badges(normalize_badges(fetch_payload()))
+          payload = fetch_payload()
+          badges = normalize_badges(payload)
+          replacement = render_badges(badges)
           updated = pattern.sub(
               lambda match: f"{match.group(1)}{match.group(2)}{replacement}{match.group(4)}{match.group(5)}",
               content,
