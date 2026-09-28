@@ -60,7 +60,11 @@ jobs:
                   if attempt < 2:
                       time.sleep(0.5 * 2 ** attempt)
 
-              raise RuntimeError(f"Failed to fetch Credly badges for '{username}': {last_error}")
+              print(
+                  f"::warning::Failed to fetch Credly badges for '{username}' after retries: {last_error}. "
+                  "Updating the badges section with the empty message."
+              )
+              return {"data": []}
 
           def normalize_badges(payload: dict) -> list[dict[str, str]]:
               data = payload.get("data")
